@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="start_gradient">#ED765E</color>
+    <color name="end_gradient">#FEA858</color>
+    <color name="primary">#ED765E</color>
+    <color name="secondary">#C6644E</color>
+    <color name="primary_dark">#FEA858</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#757575</color>
+    <color name="light_gray">#bbbdbb</color>
+    <color name="gray">#707371</color>
+    <color name="white">#FFFFFF</color>
+    <color name="input_background">#ECECEC</color>
+    <color name="icon_background">#20FFFFFF</color>
+    <color name="error">#B00020</color>
+    <color name="received_madssage_background">#090D16</color>
+</resources>

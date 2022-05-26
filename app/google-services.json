@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "105527495748",
+    "project_id": "speedychat-8c6a5",
+    "storage_bucket": "speedychat-8c6a5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:105527495748:android:602bfa035d8818a0e84011",
+        "android_client_info": {
+          "package_name": "com.example.speedychat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "105527495748-mcltnn70msm60ei6k77d78dghqtd5qnu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuwIkswBtaIFSj9_Wfh4mzn9B_pS45nHE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "105527495748-mcltnn70msm60ei6k77d78dghqtd5qnu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
