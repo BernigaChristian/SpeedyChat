@@ -36,7 +36,11 @@ public class UsersActivity extends AppCompatActivity  implements UserListener {
     private void setListeners(){
         binding.imageBack.setOnClickListener(v -> onBackPressed());
     }
-
+    
+    /*
+    metodo che effettua una query al DB per ottenere tutti gli utenti che dispongono di un account
+    N.B nel caso in cui non ci sia nessun utente verra segnalato l'errore tramite l'invocazione del metodo showErrorMessage
+    */
     private void getUsers(){
         loading(true);
         FirebaseFirestore database = FirebaseFirestore.getInstance();
@@ -66,6 +70,7 @@ public class UsersActivity extends AppCompatActivity  implements UserListener {
                 });
     }
 
+    //metodo per segnalare "a video" un errore (nell'apposita casella di testo predisposta nel layout)
     private void showErrorMessage(){
         binding.textErrorMessage.setText(String.format("%s","No user available"));
         binding.textErrorMessage.setText(View.VISIBLE);
@@ -78,6 +83,8 @@ public class UsersActivity extends AppCompatActivity  implements UserListener {
             binding.progressBar.setVisibility(View.INVISIBLE);
     }
 
+    
+    //metodo che implementa una sorta di ascoltatore sul click su di un utente
     @Override
     public void onUserClicked(User user) {
         Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
