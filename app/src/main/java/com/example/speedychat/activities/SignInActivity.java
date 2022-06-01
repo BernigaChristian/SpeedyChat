@@ -28,7 +28,7 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     private void setListeners(){
-        binding.textCreateNewAccount.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(),SignUpActivity.class)));
+        binding.textCreateNewAccount.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(),SignUpActivity.class)));  //x rendere il testo "Create a new account" cliccabile e collegato alla schermata di SignUp
         binding.buttonSignIn.setOnClickListener(v -> {
             if(isValidSignDetails())    signIn();
         });
@@ -40,9 +40,9 @@ public class SignInActivity extends AppCompatActivity {
         database.collection(Constants.KEY_COLLECTION_USERS)
                 .whereEqualTo(Constants.KEY_EMAIL,binding.inputMail.getText().toString())
                 .whereEqualTo(Constants.KEY_PASSWORD,binding.inputPassword.getText().toString())
-                .get()
+                .get() //x fare una query al DB x verificare se esiste un utente salvato con le credenziali inserite
                 .addOnCompleteListener(task ->{
-                    if(task.isSuccessful() && task.getResult() != null && task.getResult().getDocuments().size() > 0 ){
+                    if(task.isSuccessful() && task.getResult() != null && task.getResult().getDocuments().size() > 0 ){ //se vengono trovate le credenziali e corrispondono a quelle inserite
                         DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(0);
                         preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN,true);
                         preferenceManager.putString(Constants.KEY_USER_ID,documentSnapshot.getId());
@@ -50,8 +50,8 @@ public class SignInActivity extends AppCompatActivity {
                         preferenceManager.putString(Constants.KEY_IMAGE,documentSnapshot.getString(Constants.KEY_IMAGE));
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent);
-                    }else {
+                        startActivity(intent);  //viene lanciata la MainActivity
+                    }else { //se si verificano errori oppure le credenziali inserite non corrispondono
                         loading(false);
                         showToast("Unable to Sign In");
                     }
@@ -68,6 +68,7 @@ public class SignInActivity extends AppCompatActivity {
         }
     }
 
+    //x mostrare un messaggio di errore
     private void showToast(String message){
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
