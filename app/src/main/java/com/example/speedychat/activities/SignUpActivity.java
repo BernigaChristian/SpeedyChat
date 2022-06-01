@@ -44,6 +44,7 @@ public class SignUpActivity extends AppCompatActivity {
         binding.buttonSignIn.setOnClickListener(v -> {
             if(isValidSignUpDetails())  signUp();
         });
+        //x aprire esplora file
         binding.layoutImage.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -51,6 +52,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
+    //x mostrare messaggio di errore
     private void showToast(String message){
         Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
     }
@@ -64,8 +66,8 @@ public class SignUpActivity extends AppCompatActivity {
         user.put(Constants.KEY_PASSWORD,binding.inputPassword.getText().toString());
         user.put(Constants.KEY_IMAGE,encodedImage);
         database.collection(Constants.KEY_COLLECTION_USERS)
-                .add(user)
-                .addOnSuccessListener(documentReference -> {
+                .add(user)  //aggiungo al DB la struttura dati appena creata contenente i dati dell'utente appena inseriti
+                .addOnSuccessListener(documentReference -> {    //se l'aggiunta al DB viene fatta senza problemi
                     loading(false);
                     preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN,true);
                     preferenceManager.putString(Constants.KEY_USER_ID, documentReference.getId());
@@ -75,12 +77,13 @@ public class SignUpActivity extends AppCompatActivity {
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 })
-                .addOnFailureListener(exception ->{
+                .addOnFailureListener(exception ->{ //se si verificano errori nell'aggiunta al DB
                     loading(false);
                     showToast(exception.getMessage());
                 });
     }
 
+    //x decodificare l'immagine profilo inserita
     private String encodeImage(Bitmap bitmap){
         int previewWidth = 150;
         int previewHeight = bitmap.getHeight() * previewWidth / bitmap.getWidth();
@@ -109,6 +112,7 @@ public class SignUpActivity extends AppCompatActivity {
             }
     );
 
+    //x verificare la validità dei campi
     private Boolean isValidSignUpDetails(){
         if(encodedImage == null) {
             showToast("Select Profile Image");
